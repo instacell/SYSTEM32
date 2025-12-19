@@ -1,3 +1,14 @@
+% FIR filter specifications
+filter_order = 100;                 % Filter order
+f_low = 2;                           % Lower cutoff (Hz)
+f_high = 20;                         % Upper cutoff (Hz)
+
+% Normalized frequencies
+Wn = [f_low f_high] / (Fs/2);
+
+% Design FIR band-pass filter using Hamming window
+b = fir1(filter_order, Wn, 'bandpass', hamming(filter_order+1));
+
 Fs = 48000;     % Sampling Frequency
 N  = 50;        % Filter order
 Fc = 0.3;       % Cutoff frequency (Hz normalized style)
@@ -15,3 +26,4 @@ xlabel('Frequency (Hz)')
 ylabel('Magnitude')
 title('FIR Low-Pass Filter using Rectangular Window')
 grid on
+
